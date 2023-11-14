@@ -35,7 +35,7 @@ public class AppFrame extends JFrame {
 		// TO-DO: Change this to DO_NOTHING_ON_CLOSE after testing
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Cannot close the window
 		setResizable(false); // Cannot resize the window
-		setSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full screens the window
+		setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full screens the window
 		setType(Type.UTILITY); // Prevents window from minimizing, and persists across desktops
 		setUndecorated(true); // Removes the title bar
 
