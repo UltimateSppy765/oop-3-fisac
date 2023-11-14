@@ -1,10 +1,18 @@
+package app;
+
 import java.awt.*;
 
 import javax.swing.*;
 
+import screens.*;
+import utils.Student;
+
 public class AppFrame extends JFrame {
 
 	private static final long serialVersionUID = -7550168408532481572L;
+	public final JPanel panels[] = {new LoginPanel(this), new QuizPanel(this)};
+	public static final String panelNames[] = {"Login Panel", "Quiz Panel"};
+	public Student loggedInStudent;
 
 	/**
 	 * Launch the application.
@@ -19,7 +27,7 @@ public class AppFrame extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} frame.showPanel("Quiz Panel");
+				} frame.showPanel(panelNames[0]);
 			}
 		});
 	}
@@ -46,11 +54,11 @@ public class AppFrame extends JFrame {
 		 * These will be cards inside the card layout
 		 * Refer: https://docs.oracle.com/javase/tutorial/uiswing/layout/card.html
 		 */
-		add(new screens.LoginPanel(), "Login Panel");
-		add(new screens.QuizPanel(), "Quiz Panel");
+		for (int i = 0; i < panels.length; ++i)
+			add(panels[i], panelNames[i]);
 	}
 
-	void showPanel (String panelName) {
+	public void showPanel (String panelName) {
 		var cpane = getContentPane();
 		/** 
 		 * A particular card can be shown to the user
