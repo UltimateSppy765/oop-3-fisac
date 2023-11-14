@@ -18,7 +18,7 @@ public class Question {
 		return id + ") " + question;
 	}
 	
-	boolean checkAnswer (String option) {
+	public boolean checkAnswer (String option) {
 		return answer.equals(option);
 	}
 	
