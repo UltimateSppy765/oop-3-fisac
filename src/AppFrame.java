@@ -19,7 +19,7 @@ public class AppFrame extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} frame.showPanel("Login Panel");
+				} frame.showPanel("Quiz Panel");
 			}
 		});
 	}
@@ -38,7 +38,7 @@ public class AppFrame extends JFrame {
 		setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full screens the window
 		setType(Type.UTILITY); // Prevents window from minimizing, and persists across desktops
 		setUndecorated(true); // Removes the title bar
-
+		
 		// https://stackoverflow.com/a/6010949
 		setLayout(new CardLayout());
 		
@@ -46,7 +46,8 @@ public class AppFrame extends JFrame {
 		 * These will be cards inside the card layout
 		 * Refer: https://docs.oracle.com/javase/tutorial/uiswing/layout/card.html
 		 */
-		add(new screens.LoginPanel());
+		add(new screens.LoginPanel(), "Login Panel");
+		add(new screens.QuizPanel(), "Quiz Panel");
 	}
 
 	void showPanel (String panelName) {

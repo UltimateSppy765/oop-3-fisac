@@ -16,24 +16,21 @@ public class LoginPanel extends JPanel {
 	 */
 	public LoginPanel() {
 		super(new GridBagLayout());
-		setName("Login Panel");
 		
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(0);
-		add(splitPane);
-		
-		splitPane.setLeftComponent(new JLabel(
-			new ImageIcon(
-				LoginPanel.class.getResource("/media/SchoolRoom.jpg")
-			)
-		));
-		
-		JPanel optionsPanel = new JPanel();
-		splitPane.setRightComponent(optionsPanel);
 		GridBagLayout gbl_optionsPanel = new GridBagLayout();
 		gbl_optionsPanel.columnWidths = new int[]{15, 0, 15};
 		gbl_optionsPanel.rowHeights = new int[]{0, 0, 10, 0};
-		optionsPanel.setLayout(gbl_optionsPanel);
+		JPanel optionsPanel = new JPanel(gbl_optionsPanel);
+		
+		JSplitPane splitPane = new JSplitPane(
+			JSplitPane.HORIZONTAL_SPLIT,
+			new JLabel(new ImageIcon(
+				LoginPanel.class.getResource("/media/SchoolRoom.jpg")
+			)),
+			optionsPanel
+		);
+		splitPane.setDividerSize(0);
+		add(splitPane);
 		
 		JPanel usernamePanel = new JPanel();
 		GridBagConstraints gbc_usernamePanel = new GridBagConstraints();
@@ -69,6 +66,17 @@ public class LoginPanel extends JPanel {
 		optionsPanel.add(buttonPanel, gbc_buttonPanel);
 		
 		JButton loginButton = new JButton("Login");
+		loginButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				usernameField.setEnabled(false);
+				passwordField.setEnabled(false);
+				loginButton.setEnabled(false);
+				loginButton.setIcon(new ImageIcon(
+						LoginPanel.class.getResource("/media/Loading.gif")
+				));
+			}
+		});
 		buttonPanel.add(loginButton);
 		
 		JButton exitButton = new JButton("Exit");
