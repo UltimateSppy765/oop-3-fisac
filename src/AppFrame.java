@@ -32,6 +32,7 @@ public class AppFrame extends JFrame {
 		 * An actual test taker will hate the following block of code
 		 */
 		setAlwaysOnTop(true); // Window sits on top
+		// TO-DO: Change this to DO_NOTHING_ON_CLOSE after testing
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Cannot close the window
 		setResizable(false); // Cannot resize the window
 		setSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full screens the window
