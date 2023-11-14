@@ -5,17 +5,22 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import app.*;
+import utils.Student;
+
 public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = -1222413331511075593L;
+	private AppFrame owner;
 	private JFormattedTextField usernameField;
 	private JPasswordField passwordField;
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public LoginPanel(AppFrame owner) {
 		super(new GridBagLayout());
+		this.owner = owner;
 		
 		GridBagLayout gbl_optionsPanel = new GridBagLayout();
 		gbl_optionsPanel.columnWidths = new int[]{15, 0, 15};
@@ -69,12 +74,25 @@ public class LoginPanel extends JPanel {
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				usernameField.setEnabled(false);
-				passwordField.setEnabled(false);
-				loginButton.setEnabled(false);
-				loginButton.setIcon(new ImageIcon(
-						LoginPanel.class.getResource("/media/Loading.gif")
-				));
+				owner.loggedInStudent =  Student.findStudent(
+					usernameField.getText(), 
+					new String(passwordField.getPassword())
+				);
+				if (owner.loggedInStudent != null) {
+					owner.showPanel(AppFrame.panelNames[1]);
+					owner.remove(owner.panels[0]);
+					owner.panels[0] = new LoginPanel(owner);
+					owner.add(owner.panels[0], AppFrame.panelNames[0]);
+					var lbl = ((QuizPanel) owner.panels[1]).loggedInDetails;
+					lbl.setText(lbl.getText() + owner.loggedInStudent.displayName);
+				} else {
+					JOptionPane.showMessageDialog(
+						owner,
+						"Incorrect Username/Password.",
+						"Login Error",
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
 			}
 		});
 		buttonPanel.add(loginButton);
