@@ -10,7 +10,8 @@ public class AppFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				AppFrame frame = null;
 				try {
