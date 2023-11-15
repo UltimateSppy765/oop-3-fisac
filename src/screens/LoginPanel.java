@@ -12,7 +12,7 @@ public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = -1222413331511075593L;
 	private AppFrame owner;
-	private JFormattedTextField usernameField;
+	private JTextField usernameField;
 	private JPasswordField passwordField;
 
 	/**
@@ -46,9 +46,8 @@ public class LoginPanel extends JPanel {
 		JLabel usernameLabel = new JLabel("Username");
 		usernamePanel.add(usernameLabel);
 		
-		usernameField = new JFormattedTextField();
+		usernameField = new JTextField(10);
 		usernameLabel.setLabelFor(usernameField);
-		usernameField.setColumns(10);
 		usernamePanel.add(usernameField);
 		
 		JPanel passwordPanel = new JPanel();
