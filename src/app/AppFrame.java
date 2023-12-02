@@ -18,7 +18,13 @@ public class AppFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
+		try {
+			// Set UI to use Windows look and feel
+			// This may fail on macOS idk
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		} SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				AppFrame frame = null;
